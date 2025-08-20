@@ -1,0 +1,182 @@
+{% schema %}
+{
+  "name": "Top Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left Text",
+      "default": "TIISO Vision"
+    },
+    {
+      "type": "text",
+      "id": "center_text",
+      "label": "Center Text",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text",
+      "default": "Choose Gift"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="top-header">
+  <div class="top-header-container">
+    <!-- Left -->
+    <div class="top-header-left">
+      {{ section.settings.left_text }}
+    </div>
+
+    <!-- Center (hidden in mobile, shown in expanded menu) -->
+    <div class="top-header-center">
+      {{ section.settings.center_text }}
+    </div>
+
+    <!-- Right -->
+    <a href="{{ section.settings.button_link }}" class="top-header-btn">
+      {{ section.settings.button_label }}
+    </a>
+    {% if section.settings.button_link %}
+  <a href="{{ section.settings.button_link }}" class="top-header-btn">
+    {{ section.settings.button_label }}
+    <span class="btn-arrow">
+      <!-- Inline SVG arrow (from Figma or simple right arrow) -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="11" y2="6"/>
+        <polyline points="5 6 11 6 11 12"/>
+      </svg>
+    </span>
+  </a>
+{% endif %}
+
+    <!-- Hamburger for mobile -->
+    <button class="top-header-hamburger" onclick="toggleTopHeaderMenu()">☰</button>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div class="top-header-mobile-menu" id="topHeaderMobileMenu">
+    <p>{{ section.settings.center_text }}</p>
+    <a href="{{ section.settings.button_link }}" class="top-header-btn">
+      {{ section.settings.button_label }}
+    </a>
+  </div>
+</section>
+
+<style>
+.top-header {
+  width: 100%;
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.top-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Left text */
+.top-header-left {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000;
+}
+
+/* Center text (desktop only) */
+.top-header-center {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  color: #000;
+}
+
+/* Button with hover effect */
+.top-header-btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 18px;
+  background: #FFD700; /* Yellow */
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.top-header-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.top-header-btn:hover::before {
+  left: 0;
+}
+
+.top-header-btn:hover {
+  color: white;
+}
+
+.top-header-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hamburger */
+.top-header-hamburger {
+  display: none;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile menu (hidden by default) */
+.top-header-mobile-menu {
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.top-header-mobile-menu p {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-header-center,
+  .top-header-btn {
+    display: none;
+  }
+
+  .top-header-hamburger {
+    display: block;
+  }
+
+  .top-header-mobile-menu.active {
+    display: flex

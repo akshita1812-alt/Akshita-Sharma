@@ -24,7 +24,7 @@
       "type": "textarea",
       "id": "subtext",
       "label": "Subtext",
-      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
     },
     {
       "type": "url",
@@ -51,9 +51,17 @@
   <div class="gift-guide-content">
     <h1>{{ section.settings.heading }}</h1>
     <p>{{ section.settings.subtext }}</p>
-    {% if section.settings.button_link %}
-      <a href="{{ section.settings.button_link }}" class="btn">{{ section.settings.button_label }}</a>
-    {% endif %}
+    {% if section.settings.second_button_link %}
+  <a href="{{ section.settings.second_button_link }}" class="btn btn-black">
+    {{ section.settings.second_button_label }}
+    <span class="btn-arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="11" y2="6"/>
+        <polyline points="5 6 11 6 11 12"/>
+      </svg>
+    </span>
+  </a>
+{% endif %}
   </div>
   <div class="gift-guide-tagline">
     {{ section.settings.tagline }}
@@ -72,11 +80,11 @@
   max-width: 600px;
 }
 .gift-guide-content h1 {
-  font-size: 42px;
+  font-size: 70px;
   font-weight: bold;
 }
 .gift-guide-content p {
-  margin: 15px 0;
+  margin: 20px 0;
   font-size: 18px;
 }
 .gift-guide-content .btn {
@@ -89,9 +97,10 @@
 .gift-guide-tagline {
   margin-top: 40px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   background: #f5f5f5;
   padding: 10px 0;
+  text-transform: uppercase;
 }
 @media(max-width:768px) {
   .gift-guide-content h1 { font-size: 28px; }

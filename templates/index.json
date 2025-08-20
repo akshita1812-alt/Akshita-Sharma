@@ -8,10 +8,19 @@
  * ------------------------------------------------------------
  */{
   "sections": {
+    "top-header": {
+      "type": "top-header",
+      "settings": {
+        "left_text": "TIISO Vision",
+        "center_text": "Find the ideal gift for your loved ones.",
+        "button_link": "/collections/all",
+        "button_label": "Explore"
+      }
+    },
     "banner": {
       "type": "banner",
       "settings": {
-        "heading": "Welcome to our store",
+        "heading": "The Gift Guide",
         "subheading": "Check out the latest products"
       }
     },
@@ -287,8 +296,9 @@
     }
   },
   "order": [
+    "top-header",
     "banner",
-    "hero_jVaWmY",
+    // "hero_jVaWmY",
     "product_list_fa6P9H"
   ]
 }
