@@ -117,7 +117,73 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "top_section": {
+      "type": "top-header", 
+      "blocks": {
+        "header-left": {
+          "type": "text",
+          "settings": {
+            "text": "Tisso Vision",
+            "font": "heading",
+            "font_size": "1.25rem",
+            "weight": "bold",
+            "case": "uppercase"
+          }
+        },
+        "header-center": {
+          "type": "text",
+          "settings": {
+            "text": "Find the ideal gift for your loved ones.",
+            "font": "body",
+            "font_size": "1rem",
+            "weight": "normal",
+            "case": "none"
+          }
+        },
+        "header-right": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "/collections/all",
+            "style": "yellow-to-black" 
+          }
+        },
+        "header-right-alt": {
+          "type": "button",
+          "settings": {
+            "label": "Discover More",
+            "link": "/pages/about",
+            "style": "black-to-yellow"
+          }
+        },
+        "mobile-menu": {
+          "type": "hamburger",
+          "settings": {
+            "menu": "main-menu",
+            "drawer_position": "below-header"
+          }
+        }
+      },
+      "block_order": [
+        "header-left",
+        "header-center",
+        "header-right",
+        "header-right-alt",
+        "mobile-menu"
+      ],
+      "settings": {
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": true,
+        "color_scheme": "scheme-1",
+        "divider_width": 0
+      }
     }
   },
-  "order": []
+  "order": [
+    "header_announcements_9jGBFp",
+    "header_section",
+    "top-section"
+  ]
 }
