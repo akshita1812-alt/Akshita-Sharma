@@ -8,6 +8,13 @@
  * ------------------------------------------------------------
  */{
   "sections": {
+    "banner": {
+      "type": "banner",
+      "settings": {
+        "heading": "Welcome to our store",
+        "subheading": "Check out the latest products"
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -280,6 +287,7 @@
     }
   },
   "order": [
+    "banner",
     "hero_jVaWmY",
     "product_list_fa6P9H"
   ]
