@@ -14,7 +14,7 @@
         "left_text": "TIISO Vision",
         "center_text": "Find the ideal gift for your loved ones.",
         "button_link": "/collections/all",
-        "button_label": "Explore"
+        "button_label": "Choose Gift"
       }
     },
     "banner": {
@@ -298,7 +298,6 @@
   "order": [
     "top-header",
     "banner",
-    // "hero_jVaWmY",
     "product_list_fa6P9H"
   ]
 }
