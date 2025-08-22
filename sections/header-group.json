@@ -7,75 +7,22 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "type": "header",
   "name": "Header",
   "sections": {
-    
     "top_header": {
-      "type": "top-header", 
-      "blocks": {
-        "left-text": {
-          "type": "text",
-          "settings": {
-            "text": "Tisso Vision",
-            "font": "heading",
-            "font_size": "1.25rem",
-            "weight": "bold",
-            "case": "uppercase"
-          }
-        },
-        "center-text": {
-          "type": "text",
-          "settings": {
-            "text": "Find the ideal gift for your loved ones.",
-            "font": "body",
-            "font_size": "1rem",
-            "weight": "normal",
-            "case": "none"
-          }
-        },
-        "button_label": {
-          "type": "button",
-          "settings": {
-            "label": "Shop Now",
-            "link": "/collections/all",
-            "style": "yellow-to-black" 
-          }
-        },
-        "button_link": {
-          "type": "button",
-          "settings": {
-            "label": "Discover More",
-            "link": "/pages/about",
-            "style": "black-to-yellow"
-          }
-        },
-        "mobile-menu": {
-          "type": "hamburger",
-          "settings": {
-            "menu": "main-menu",
-            "drawer_position": "below-header"
-          }
-        }
-      },
-      "block_order": [
-        "header-left",
-        "header-center",
-        "header-right",
-        "header-right-alt",
-        "mobile-menu"
-      ],
+      "type": "top-header",
       "settings": {
-        "section_width": "page-width",
-        "section_height": "standard",
-        "enable_sticky_header": true,
-        "color_scheme": "scheme-1",
-        "divider_width": 0
+        "left_text": "Tisso Vision",
+        "center_text": "Find the ideal gift for your loved ones.",
+        "button_link": "/collections/all",
+        "button_label": "Choose Gift"
       }
     }
   },
   "order": [
-    "top-header"
+    "top_header"
   ]
 }
+

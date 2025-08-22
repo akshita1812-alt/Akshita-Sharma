@@ -15,6 +15,16 @@
       "label": "Background image"
     },
     {
+      "type": "image_picker",
+      "id": "side_image",
+      "label": "Right side image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile center image"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
@@ -25,6 +35,12 @@
       "id": "subtext",
       "label": "Subtext",
       "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_subtext",
+      "label": "Mobile Subtext",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
     },
     {
       "type": "url",
@@ -42,42 +58,100 @@
       "id": "tagline",
       "label": "Tagline",
       "default": "Sustainable, ethically made clothes in sizes XXS to 6XL"
+    },
+    {
+      "type": "text",
+      "id": "mobile_tagline",
+      "label": "Mobile Tagline",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
     }
   ]
 }
 {% endschema %}
 
-<section class="gift-guide-banner" style="background-image:url({{ section.settings.background_image | image_url }});">
+<section class="gift-guide-banner" >
+
+ {% if section.settings.background_image %}
+    <div class="banner-top-image">
+      <img src="{{ section.settings.background_image| image_url: width: 2000 }}" alt="Banner image" />
+    </div>
+  {% endif %}
+
+ <div class="gift-guide-container">
   <div class="gift-guide-content">
     <h1>{{ section.settings.heading }}</h1>
-    <p>{{ section.settings.subtext }}</p>
-    {% if section.settings.second_button_link %}
-  <a href="{{ section.settings.second_button_link }}" class="btn btn-black">
-    {{ section.settings.second_button_label }}
-    <span class="btn-arrow">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="11" y2="6"/>
-        <polyline points="5 6 11 6 11 12"/>
-      </svg>
+    <p class="desktop-tagline">{{ section.settings.subtext }}</p>
+     <p class="mobile-tagline">{{ section.settings.mobile_subtext}}</p>
+   <!-- button outside  the content -->
+   {% if section.settings.button_link %}
+  <a href="{{ section.settings.button_link }}" class="btn btn-black">
+      <span class="btn-text">{{ section.settings.button_label }}</span>
+     <span class="btn-arrow">
+      <!-- Inline SVG arrow (from Figma ) -->
+      <svg width="28" height="13" viewBox="0 0 28 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
+</svg>
+
     </span>
   </a>
+  {% endif %}
+
+  
+  </div>
+    <!-- Side Image -->
+    {% if section.settings.side_image or section.settings.mobile_image %}
+  <div class="gift-guide-image">
+    {% if section.settings.side_image %}
+      <img class="desktop-image" src="{{ section.settings.side_image | image_url }}" alt="Desktop banner image" />
+    {% endif %}
+    {% if section.settings.mobile_image %}
+      <img class="mobile-image" src="{{ section.settings.mobile_image | image_url }}" alt="Mobile banner image" />
+    {% endif %}
+  </div>
 {% endif %}
-  </div>
+
+</div>
   <div class="gift-guide-tagline">
-    {{ section.settings.tagline }}
-  </div>
+  <span class="desktop-guide-tagline">{{ section.settings.tagline }}</span>
+  <span class="mobile-guide-tagline">{{ section.settings.mobile_tagline }}</span>
+</div>
 </section>
 
 <style>
-.gift-guide-banner {
-  background-size: cover;
-  background-position: center;
-  padding: 80px 20px;
-  text-align: left;
-  position: relative;
+
+.banner-top-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
 }
+.gift-guide-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: -1px 60px;
+}
+
 .gift-guide-content {
+    flex: 1;
   max-width: 600px;
+  margin-left:115px;
+}
+.mobile-tagline {
+  display: none;
+  width: 50%;
+}
+.desktop-image {
+  display: block;
+}
+.mobile-image {
+  display: none;
+}
+.mobile-guide-tagline{
+    display: none;
 }
 .gift-guide-content h1 {
   font-size: 70px;
@@ -87,25 +161,149 @@
   margin: 20px 0;
   font-size: 18px;
 }
-.gift-guide-content .btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  padding: 12px 24px;
-  text-decoration: none;
-}
+
 .gift-guide-tagline {
-  margin-top: 40px;
   text-align: center;
   font-size: 16px;
   background: #f5f5f5;
   padding: 10px 0;
   text-transform: uppercase;
 }
+
+.gift-guide-image img {
+  width:  100%;
+  height: auto;
+}
+
+.btn-arrow{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/* Button with hover effect */
+.btn {
+  position: relative;
+  display: flex;
+  padding: 12px 24px;
+  width: 33%;
+  background: black;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #FFF544; /* Yellow */;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+.btn-text, .btn-arrow {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+.btn span {
+  position: relative;
+  z-index: 1; /* bring text above black overlay */
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.btn:hover {
+  color: black;
+}
+.btn:hover .btn-text {
+  color: black;
+}
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+.btn:hover .btn-arrow svg path {
+  fill: black;
+  transition: fill 0.3s ease;
+}
+
+.btn .btn-arrow svg path {
+  transition: fill 0.3s ease;
+}
 @media(max-width:768px) {
-  .gift-guide-content h1 { font-size: 28px; }
-  .gift-guide-content p { font-size: 16px; }
-  .gift-guide-banner { padding: 40px 15px; text-align: center; }
+  .banner-top-image {
+    display: none;
+  }
+
+  .gift-guide-container {
+    flex-direction: column;
+    text-align: center;
+  
+  }
+    .gift-guide-content {
+     padding: 0 15px;
+  margin-left:0px;
+}
+ .gift-guide-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gift-guide-content h1 {
+    order: 1;
+  }
+  
+  .gift-guide-content p {
+    order: 2;
+  }
+  
+  .gift-guide-content .btn {
+    order: 3;
+  }
+  .gift-guide-content h1 {
+    margin-top: 45px;
+    font-size: 30px;
+  }
+  .desktop-tagline {
+    display: none;
+  }
+  .mobile-tagline {
+    display: inline-flex;
+    width: 226px;
+  }
+   .desktop-image {
+    display: none;
+  }
+  .mobile-image {
+    display: block;
+    max-width: 400%;
+    padding:  0px;
+  }
+  .mobile-guide-tagline{
+    display: inline;
+  }
+  .desktop-guide-tagline{
+    display: none;
+  }
+  .gift-guide-content p {
+    font-size: 16px;
+    margin: 0px;
+  }
+
+  .btn {
+    width: auto;
+    display: inline-flex; 
+    top: 15rem;
+  }
 }
 </style>
 

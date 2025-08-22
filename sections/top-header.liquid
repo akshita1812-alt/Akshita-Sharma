@@ -32,6 +32,9 @@
 <section class="top-header">
   <div class="top-header-container">
     <!-- Left -->
+     <!-- Hamburger for mobile -->
+    <button class="top-header-hamburger" onclick="toggleTopHeaderMenu()">☰</button>
+
     <div class="top-header-left">
       {{ section.settings.left_text }}
     </div>
@@ -41,25 +44,20 @@
       {{ section.settings.center_text }}
     </div>
 
-    <!-- Right -->
-    <a href="{{ section.settings.button_link }}" class="top-header-btn">
-      {{ section.settings.button_label }}
-    </a>
+   
     {% if section.settings.button_link %}
   <a href="{{ section.settings.button_link }}" class="top-header-btn">
-    {{ section.settings.button_label }}
+    <span class="btn-text">{{ section.settings.button_label }}</span>
     <span class="btn-arrow">
-      <!-- Inline SVG arrow (from Figma or simple right arrow) -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="11" y2="6"/>
-        <polyline points="5 6 11 6 11 12"/>
-      </svg>
+      <!-- Inline SVG arrow (from Figma ) -->
+      <svg width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"/>
+        </svg>
     </span>
   </a>
 {% endif %}
 
-    <!-- Hamburger for mobile -->
-    <button class="top-header-hamburger" onclick="toggleTopHeaderMenu()">☰</button>
+   
   </div>
 
   <!-- Mobile dropdown -->
@@ -77,21 +75,20 @@
   background: white;
   padding: 12px 20px;
   border-bottom: 1px solid #eee;
+   background: #F7F7F7;
 }
 
 .top-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
   position: relative;
 }
 
 /* Left text */
 .top-header-left {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   color: #000;
 }
 
@@ -106,9 +103,9 @@
 /* Button with hover effect */
 .top-header-btn {
   position: relative;
-  display: inline-block;
+  display: flex;
   padding: 8px 18px;
-  background: #FFD700; /* Yellow */
+  background: #FFF544; /* Yellow */
   color: black;
   text-decoration: none;
   font-weight: bold;
@@ -130,6 +127,11 @@
   z-index: 0;
 }
 
+.top-header-btn span {
+  position: relative;
+  z-index: 1; /* bring text above black overlay */
+}
+
 .top-header-btn:hover::before {
   left: 0;
 }
@@ -137,7 +139,14 @@
 .top-header-btn:hover {
   color: white;
 }
-
+.top-header-btn:hover .btn-text {
+  color: white;
+}
+.top-header-btn-text, .btn-arrow {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
 .top-header-btn span {
   position: relative;
   z-index: 1;
@@ -161,6 +170,18 @@
   border-top: 1px solid #ddd;
 }
 
+.btn-arrow{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.top-header-btn:hover .btn-arrow svg path {
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
+.top-header-btn .btn-arrow svg path {
+  transition: fill 0.3s ease;
+}
 .top-header-mobile-menu p {
   margin-bottom: 10px;
   font-size: 15px;
@@ -173,10 +194,25 @@
   .top-header-btn {
     display: none;
   }
+   .top-header-left {
+    text-align: center;
+    flex: 1;
+  }
 
   .top-header-hamburger {
     display: block;
   }
 
   .top-header-mobile-menu.active {
-    display: flex
+    display: flex;
+    }
+
+
+</style>
+
+<script>
+function toggleTopHeaderMenu() {
+  const menu = document.getElementById('topHeaderMobileMenu');
+  menu.classList.toggle('active');
+}
+</script>
