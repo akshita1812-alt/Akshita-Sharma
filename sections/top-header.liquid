@@ -63,8 +63,14 @@
   <!-- Mobile dropdown -->
   <div class="top-header-mobile-menu" id="topHeaderMobileMenu">
     <p>{{ section.settings.center_text }}</p>
-    <a href="{{ section.settings.button_link }}" class="top-header-btn">
-      {{ section.settings.button_label }}
+    <a href="{{ section.settings.button_link }}" class="top-header-mobile-btn">
+       <span class="btn-text">{{ section.settings.button_label }}</span>
+        <span class="btn-arrow">
+      <!-- Inline SVG arrow (from Figma ) -->
+      <svg width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"/>
+        </svg>
+    </span>
     </a>
   </div>
 </section>
@@ -74,7 +80,6 @@
   width: 100%;
   background: white;
   padding: 12px 20px;
-  border-bottom: 1px solid #eee;
    background: #F7F7F7;
 }
 
@@ -167,7 +172,7 @@
   flex-direction: column;
   text-align: center;
   padding: 15px;
-  border-top: 1px solid #ddd;
+
 }
 
 .btn-arrow{
@@ -204,10 +209,71 @@
   }
 
   .top-header-mobile-menu.active {
-    display: flex;
+    display: block;
     }
+  .top-header-mobile-btn{
+  position: relative;
+  display: inline-flex;
+  padding: 8px 18px;
+  background: #FFF544; /* Yellow */
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  max-width: fit-content;
+  margin:  10px auto;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  }
+  .top-header-mobile-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
 
+.top-header-mobile-btn span {
+  position: relative;
+  z-index: 1; /* bring text above black overlay */
+}
 
+.top-header-mobile-btn:hover::before {
+  left: 0;
+}
+
+.top-header-mobile-btn:hover {
+  color: white;
+}
+.top-header-mobile-btn:hover .btn-text {
+  color: white;
+}
+.top-header-btn-text, .btn-arrow {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+.top-header-mobile-btn span {
+  position: relative;
+  z-index: 1;
+}
+.btn-arrow{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.top-header-mobile-btn:hover .btn-arrow svg path {
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
+.top-header-mobiile-btn .btn-arrow svg path {
+  transition: fill 0.3s ease;
+}
 </style>
 
 <script>
