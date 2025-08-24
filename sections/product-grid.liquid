@@ -75,7 +75,7 @@
                    class="product-image">
             {% endif %}
             <button class="product-quick-view-btn" data-product-handle="{{ product.handle }}">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_3_2760)">
 <circle cx="15" cy="12" r="11" fill="#F8F8F8" fill-opacity="0.9"/>
 <path d="M15.3457 8.04175V16.5033" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
@@ -95,6 +95,7 @@
 </defs>
 </svg>
 
+
             </button>
           </div>
         </div>
@@ -106,45 +107,52 @@
 <!-- Product Popup Modal -->
 <div id="productPopup" class="product-popup-overlay" style="display: none;">
   <div class="product-popup">
-    <button class="popup-close">&times;</button>
-    <div class="popup-content">
+    <button class="popup-close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.0376 4.94354L13.5229 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M5.0376 13.4285L13.5229 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>
+</button>
+ <!-- Top Section: Image + Product Info -->
+    <div class="popup-top-section">
       <div class="popup-image">
         <img id="popupProductImage" src="" alt="">
       </div>
-      <div class="popup-details">
+      <div class="popup-info">
         <h3 id="popupProductTitle"></h3>
         <p class="popup-price" id="popupProductPrice"></p>
         <p class="popup-description" id="popupProductDescription"></p>
-        
-        <form id="productForm" action="/cart/add" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="id" id="selectedVariantId">
-          
-          <!-- Color Options -->
-          <div class="variant-group" id="colorOptions" style="display: none;">
-            <label class="variant-label">Color</label>
-            <div class="color-swatches" id="colorSwatches"></div>
-          </div>
-          
-          <!-- Size Options -->
-          <div class="variant-group" id="sizeOptions" style="display: none;">
-            <label class="variant-label">Size</label>
-            <div class="size-dropdown">
-              <select id="sizeSelect" name="properties[Size]">
-                <option value="">Choose your size</option>
-              </select>
-            </div>
-          </div>
-          
-          <button type="submit" class="add-to-cart-btn" id="addToCartBtn">
-            <span class="btn-text">ADD TO CART</span>
-            <span class="btn-arrow">
-              <svg width="28" height="13" viewBox="0 0 28 13" fill="none">
-                <path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
-              </svg>
-            </span>
-          </button>
-        </form>
       </div>
+    </div>
+     <!-- Bottom Section: Variants + Add to Cart -->
+    <div class="popup-bottom-section">
+      <form id="productForm" action="/cart/add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="selectedVariantId">
+        
+        <!-- Color Options -->
+        <div class="variant-group" id="colorOptions" style="display: none;">
+          <label class="variant-label">Color</label>
+          <div class="color-swatches" id="colorSwatches"></div>
+        </div>
+        
+        <!-- Size Options -->
+        <div class="variant-group" id="sizeOptions" style="display: none;">
+          <label class="variant-label">Size</label>
+          <div class="size-dropdown">
+            <select id="sizeSelect" name="properties[Size]">
+              <option value="">Choose your size</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" class="add-to-cart-btn" id="addToCartBtn">
+          <span class="btn-text">ADD TO CART</span>
+          <span class="btn-arrow">
+            <svg width="28" height="13" viewBox="0 0 28 13" fill="none">
+              <path d="M1.11108 5.74402L0.361084 5.74402L0.361084 7.24402L1.11108 7.24402L1.11108 5.74402ZM27.1487 7.02435C27.4416 6.73146 27.4416 6.25658 27.1487 5.96369L22.3757 1.19072C22.0828 0.897826 21.6079 0.897826 21.315 1.19072C21.0221 1.48361 21.0221 1.95849 21.315 2.25138L25.5577 6.49402L21.315 10.7367C21.0221 11.0296 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02435ZM1.11108 7.24402L26.6183 7.24402L26.6183 5.74402L1.11108 5.74402L1.11108 7.24402Z" fill="white"/>
+            </svg>
+          </span>
+        </button>
+      </form>
     </div>
   </div>
 </div>
@@ -176,7 +184,6 @@
 .product-image-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
   aspect-ratio: 1;
 }
 
@@ -195,17 +202,15 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: rgba(0, 0, 0, 0.7);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  background: transparent;
 }
 
 .product-grid-item:hover .product-quick-view-btn {
@@ -229,8 +234,7 @@
 
 .product-popup {
   background: white;
-  border-radius: 12px;
-  max-width: 600px;
+  max-width: 510px;
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
@@ -249,9 +253,10 @@
   color: #666;
 }
 
-.popup-content {
+.popup-top-section {
   display: flex;
   flex-direction: row;
+  margin: 50px 20px;
 }
 
 .popup-image {
@@ -263,15 +268,16 @@
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-radius: 12px 0 0 12px;
 }
 
-.popup-details {
+.popup-info {
   flex: 1;
-  padding: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.popup-details h3 {
+.popup-info h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
   font-weight: 500;
@@ -286,8 +292,12 @@
 .popup-description {
   font-size: 0.9rem;
   line-height: 1.5;
-  margin-bottom: 25px;
   color: #666;
+  flex-grow: 1;
+}
+
+.popup-bottom-section {
+  padding: 0 30px 30px;
 }
 
 .variant-group {
@@ -296,18 +306,26 @@
 
 .variant-label {
   display: block;
-  font-weight: 600;
   margin-bottom: 10px;
   font-size: 1rem;
 }
 
 .color-swatches {
   display: flex;
-  gap: 10px;
+}
+
+.color-swatch.active {
+  background-color: #f0f0f0 !important;
+  color: #000 !important;
+  border: 2px solid #007bff !important;
+}
+
+.color-swatch.active span {
+  border: 2px solid #000 !important;
 }
 
 .color-swatch {
-  width: 80px;
+  flex: 1;
   height: 40px;
   border: 2px solid #ddd;
   cursor: pointer;
@@ -316,6 +334,7 @@
   justify-content: center;
   font-size: 0.9rem;
   transition: border-color 0.2s ease;
+  font-weight: 500;
 }
 
 .color-swatch.active {
@@ -328,13 +347,28 @@
   border-color: #999;
 }
 
+.size-dropdown {
+  position: relative;
+}
+
 .size-dropdown select {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 4px;
   font-size: 1rem;
   background: white;
+  appearance: none;
+  cursor: pointer;
+}
+
+.size-dropdown::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
 }
 
 .add-to-cart-btn {
@@ -395,7 +429,7 @@
 @media (max-width: 768px) {
   .product-grid-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 10px;
   }
   
   .section-title {
@@ -431,7 +465,7 @@
 
 @media (max-width: 480px) {
   .product-grid-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .product-grid-section {
@@ -480,6 +514,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('popupProductPrice').textContent = formatMoney(product.price);
     document.getElementById('popupProductDescription').textContent = product.description;
     
+    // SOLUTION 1: Remove P tags from product description after setting content
+    cleanProductDescription();
+    
     if (product.featured_image) {
       document.getElementById('popupProductImage').src = product.featured_image;
     }
@@ -505,8 +542,8 @@ document.addEventListener('DOMContentLoaded', function() {
     sizeSelect.innerHTML = '<option value="">Choose your size</option>';
     
     // Get unique option values
-    const colors = [...new Set(product.variants.map(v => v.option1).filter(Boolean))];
-    const sizes = [...new Set(product.variants.map(v => v.option2).filter(Boolean))];
+    const colors = [...new Set(product.variants.map(v => v.option2).filter(Boolean))];
+    const sizes = [...new Set(product.variants.map(v => v.option1).filter(Boolean))];
     
     // Setup colors
     if (colors.length > 1) {
@@ -519,6 +556,9 @@ document.addEventListener('DOMContentLoaded', function() {
         swatch.addEventListener('click', () => selectColor(color));
         colorSwatches.appendChild(swatch);
       });
+      
+      // SOLUTION 2: Add color borders after creating color swatches
+      setTimeout(addColorBorders, 50);
     } else {
       colorOptions.style.display = 'none';
       selectedColor = colors[0] || '';
@@ -547,8 +587,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function selectColor(color) {
     selectedColor = color;
+    
+    // Remove active class from all swatches
     document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-    document.querySelector(`[data-color="${color}"]`).classList.add('active');
+    
+    // Add active class to selected swatch
+    const selectedSwatch = document.querySelector(`[data-color="${color}"]`);
+    if (selectedSwatch) {
+      selectedSwatch.classList.add('active');
+      
+      // Fix: Ensure text color remains visible after selection
+      selectedSwatch.style.color = '#000'; // Force black text
+      selectedSwatch.style.backgroundColor = '#f0f0f0'; // Light background for selected state
+    }
+    
     updateSelectedVariant();
   }
   
@@ -560,9 +612,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateSelectedVariant() {
     if (!currentProduct) return;
     
+    // Fix: Check option1 for size and option2 for color (based on your setupVariants function)
     const variant = currentProduct.variants.find(v => {
-      return (!selectedColor || v.option1 === selectedColor) && 
-             (!selectedSize || v.option2 === selectedSize);
+      return (!selectedSize || v.option1 === selectedSize) && 
+             (!selectedColor || v.option2 === selectedColor);
     });
     
     if (variant) {
@@ -683,6 +736,102 @@ document.addEventListener('DOMContentLoaded', function() {
       style: 'currency',
       currency: 'EUR' // Adjust currency as needed
     }).format(cents / 100);
+  }
+  
+  // ===== SOLUTION 1: Remove P tags from product description =====
+  function cleanProductDescription() {
+    const descriptionContainer = document.getElementById('popupProductDescription');
+    
+    if (descriptionContainer) {
+      // Get the HTML content
+      let content = descriptionContainer.innerHTML;
+      
+      // Remove all P tags but keep the content inside
+      content = content.replace(/<p[^>]*>/g, '').replace(/<\/p>/g, '<br>');
+      
+      // Remove extra line breaks at the end
+      content = content.replace(/(<br>\s*)+$/g, '');
+      
+      // Set the cleaned content back
+      descriptionContainer.innerHTML = content;
+    }
+  }
+  
+  // Alternative method - Extract text content without any HTML tags
+  function cleanProductDescriptionTextOnly() {
+    const descriptionContainer = document.getElementById('popupProductDescription');
+    
+    if (descriptionContainer) {
+      // This will remove all HTML tags and keep only text
+      const textContent = descriptionContainer.textContent || descriptionContainer.innerText;
+      descriptionContainer.innerHTML = textContent;
+    }
+  }
+  
+  // ===== SOLUTION 2: Add color borders to color swatches =====
+  function addColorBorders() {
+    const colorSwatches = document.querySelectorAll('.color-swatches .color-swatch');
+    
+    colorSwatches.forEach(swatch => {
+      // Get the text content (color name) to determine color
+      const colorName = swatch.textContent.toLowerCase().trim();
+      
+      // Get color value based on color name
+      let colorValue = getColorValue(colorName);
+      
+      // Create a span with 5px width of the color and black border
+      const colorSpan = document.createElement('span');
+      colorSpan.style.display = 'inline-block';
+      colorSpan.style.width = '5px';
+      colorSpan.style.height = '100%';
+      colorSpan.style.backgroundColor = colorValue;
+      colorSpan.style.border = '1px solid #000';
+      colorSpan.style.marginRight = '8px';
+      colorSpan.style.verticalAlign = 'middle';
+      
+      // Style the main swatch container
+      swatch.style.display = 'flex';
+      swatch.style.alignItems = 'center';
+      swatch.style.justifyContent = 'flex-start';
+      swatch.style.border = '1px solid #ddd';
+      swatch.style.cursor = 'pointer';
+      swatch.style.minWidth = '80px';
+      swatch.style.backgroundColor = '#fff';
+      
+      // Clear existing content and add the color span + text
+      const originalText = swatch.textContent;
+      swatch.innerHTML = '';
+      swatch.appendChild(colorSpan);
+      swatch.appendChild(document.createTextNode(originalText));
+    });
+  }
+  
+  // Helper function to get color value from color name
+  function getColorValue(colorName) {
+    const colorMap = {
+      'black': '#000000',
+      'white': '#ffffff',
+      'red': '#ff0000',
+      'blue': '#0000ff',
+      'green': '#008000',
+      'yellow': '#ffff00',
+      'orange': '#ffa500',
+      'pink': '#ffc0cb',
+      'purple': '#800080',
+      'brown': '#a52a2a',
+      'grey': '#808080',
+      'gray': '#808080',
+      'navy': '#000080',
+      'maroon': '#800000',
+      'olive': '#808000',
+      'lime': '#00ff00',
+      'aqua': '#00ffff',
+      'teal': '#008080',
+      'silver': '#c0c0c0',
+      'fuchsia': '#ff00ff'
+    };
+    
+    return colorMap[colorName] || '#cccccc'; // Default to light gray
   }
 });
 </script>
